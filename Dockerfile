@@ -1,7 +1,9 @@
 FROM ubuntu:16.04
 #install mailutils to send emails
 ENV DEBIAN_FRONTEND="noninteractive"
-RUN apt-get update && apt-get install -y mailutils postfix
+RUN apt-get update && apt-get install -y mailutils ssmtp
+#COPY email config
+COPY ssmtp.conf /etc/ssmtp/ssmtp.conf
 #copy script and  change permission
 COPY run.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/run.sh
